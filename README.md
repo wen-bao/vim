@@ -1,4 +1,4 @@
-# VIM
+# vim
 
 ## 基本
 
@@ -84,9 +84,9 @@ ctrl + i # 向前跳【跟进】
 
 4. 插件总结`https://blog.csdn.net/guyue35/article/details/54412428`
 
-### 自动补齐、跳转（jedi-vim）
+### python自动补齐、跳转（jedi-vim）
 
-1. 在.vimrc 添加?jedi-vim 和 supertab
+1. 在.vimrc 添加 jedi-vim 和 supertab
 
    ```shell
    call vundle#begin()
@@ -107,4 +107,59 @@ ctrl + i # 向前跳【跟进】
    let g:SuperTabDefaultCompletionType = "context"
    let g:jedi#popup_on_dot = 0
    ```
+
+### python自动补齐、跳转（cscope）
+
+`yum install cscope`
+
+vim ~/.vimrc
+
+```shell
+Plugin 'brookhong/cscope.vim'
+
+map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
+```
+
+cd ${projectdir}
+`cscope -Rbq`
+
+## 附录（.vimrc）
+
+```shell
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'brookhong/cscope.vim'
+
+Bundle 'davidhalter/jedi-vim'
+Bundle 'ervandew/supertab'
+
+call vundle#end()
+filetype plugin indent on
+
+# jedi
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0
+
+# cscope
+map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
+
+set guifont=Courier_New:h10:cANSI
+set shiftwidth=4
+set nu
+set cc=80
+set ruler
+set backspace=indent,eol,start
+
+set cursorline
+
+autocmd FileType python set tabstop=4 | set expandtab | set autoindent
+```
 

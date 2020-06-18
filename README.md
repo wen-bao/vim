@@ -143,11 +143,11 @@ Bundle 'ervandew/supertab'
 call vundle#end()
 filetype plugin indent on
 
-# jedi
+" jedi
 let g:SuperTabDefaultCompletionType = "context"
 let g:jedi#popup_on_dot = 0
 
-# cscope
+" cscope
 map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
 map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 
